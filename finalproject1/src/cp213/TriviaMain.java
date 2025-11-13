@@ -19,7 +19,7 @@ public class TriviaMain {
 	// TODO Auto-generated method stub
 	Scanner keyboard = new Scanner(System.in);
 
-	ArrayList<McQuestions> questionlist = new ArrayList<>();
+	ArrayList<Questions> questionlist = new ArrayList<>();
 
 	questionlist.add(new McQuestions("Where is the Mariana Trench located?",
 		new String[] { "Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Arctic Ocean" }, 1,

@@ -29,4 +29,7 @@ public class Questions {
 	return indexans == ans;
     }
 
+    public String getexpl() {
+	return "N/A";
+    }
 }
