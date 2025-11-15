@@ -15,7 +15,12 @@ public class McQuestions extends Questions {
 	this.expl = expl;
     }
 
+    @Override
     public String getexpl() {
 	return expl;
+    }
+
+    public void setexpl(String expl) {
+	this.expl = expl;
     }
 }

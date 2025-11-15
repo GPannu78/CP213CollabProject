@@ -32,4 +32,28 @@ public class Questions {
     public String getexpl() {
 	return "N/A";
     }
+
+    public String getQuestion() {
+	return this.question;
+    }
+
+    public String[] getOptions() {
+	return this.options;
+    }
+
+    public int getIndexAns() {
+	return this.indexans;
+    }
+
+    public void setQuestion(String question) {
+	this.question = question;
+    }
+
+    public void setOptions(String[] options) {
+	this.options = options;
+    }
+
+    public void setIndexAns(int indexans) {
+	this.indexans = indexans;
+    }
 }
