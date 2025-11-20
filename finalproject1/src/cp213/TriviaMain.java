@@ -114,6 +114,7 @@ public class TriviaMain {
 
 	questionlist.add(new McQuestions("What is the chemical symbol for gold?",
 		new String[] { "Au", "Ag", "Go", "Gd" }, 0, "The chemical symbol for gold is Au!"));
+
     }
 
 }
