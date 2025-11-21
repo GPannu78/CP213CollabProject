@@ -6,6 +6,7 @@
 package cp213;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -24,22 +25,22 @@ import javax.swing.SwingConstants;
  */
 public class TriviaGUI {
     private int index = 0;
-    private ArrayList<McQuestions> q1;
+    private ArrayList<Questions> q1;
     private JFrame frame1;
     private JLabel label1, label2;
     private int correct = 0;
     private JButton b1, b2, b3, b4;
 
-    public TriviaGUI(ArrayList<McQuestions> list1) {
+    public TriviaGUI(ArrayList<Questions> list1) {
 	this.q1 = list1;
 	frame1 = new JFrame("Who Want to be a Millionaire?");
 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame1.setSize(350, 500);
 	frame1.setLayout(new BorderLayout());
 	label1 = new JLabel("", SwingConstants.CENTER);
-	label1.setFont(new Font("Arial", Font.BOLD, 20));
+	label1.setFont(new Font("Arial", Font.BOLD, 15));
 	label2 = new JLabel("", SwingConstants.CENTER);
-	label2.setFont(new Font("Arial", Font.PLAIN, 20));
+	label2.setFont(new Font("Arial", Font.PLAIN, 15));
 	JPanel p1 = new JPanel(new GridLayout(2, 2));
 	frame1.add(p1, BorderLayout.CENTER);
 	frame1.add(label1, BorderLayout.NORTH);
@@ -47,6 +48,10 @@ public class TriviaGUI {
 	b2 = new JButton();
 	b3 = new JButton();
 	b4 = new JButton();
+	b1.setPreferredSize(new Dimension(110, 30));
+	b2.setPreferredSize(new Dimension(110, 30));
+	b3.setPreferredSize(new Dimension(110, 30));
+	b4.setPreferredSize(new Dimension(110, 30));
 	p1.add(b1);
 	p1.add(b2);
 	p1.add(b3);
@@ -76,7 +81,7 @@ public class TriviaGUI {
 	    }
 	});
 	qload();
-	frame1.setVisible(false);
+	frame1.setVisible(true);
     }
 
     public class InstructionsScreen {
@@ -108,7 +113,7 @@ public class TriviaGUI {
     }
 
     private void qload() {
-	McQuestions q2 = q1.get(index);
+	Questions q2 = q1.get(index);
 	label1.setText(q2.getQuestion());
 	String[] options1 = q2.getOptions();
 	b1.setText(options1[0]);
@@ -118,7 +123,7 @@ public class TriviaGUI {
     }
 
     private void checka(int n) {
-	McQuestions q2 = q1.get(index);
+	Questions q2 = q1.get(index);
 	if (n == q2.getIndexAns()) {
 	    label2.setText("Correct. " + q2.getexpl());
 	    correct++;
