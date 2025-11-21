@@ -28,35 +28,6 @@ public class TriviaGUI {
     private JFrame frame1;
     private JLabel label1, label2;
     private int correct = 0;
-
-    public class InstructionsScreen {
-
-	public JPanel getPanel() {
-	    JPanel panel = new JPanel();
-	    panel.setLayout(new BorderLayout());
-
-	    // Header of instructions screen
-	    JLabel header = new JLabel("Instructions", SwingConstants.CENTER);
-	    header.setFont(new Font("Arial", Font.BOLD, 25));
-	    panel.add(header, BorderLayout.NORTH);
-
-	    // Instructions body
-	    JTextArea instructions = new JTextArea(
-		    "1. Read each question carefully and select the correct answer out of 4.\n"
-			    + "2. If you answer correctly, then you move onto to the next prize level.\n"
-			    + "3. If you answer incorrectly, then you lose everything.\n"
-			    + "4. Use the 50/50 lifeline to remove two wrong answers only once.\n"
-			    + "5. Click \"Walk Away\" to stop and take the money earned.\n "
-			    + "6. To become the millionare, answer all 15 questions correctly.");
-
-	    instructions.setFont(new Font("Arial", Font.PLAIN, 15));
-	    instructions.setBackground(panel.getBackground());
-	    panel.add(instructions, BorderLayout.CENTER);
-
-	    return panel;
-	}
-    }
-
     private JButton b1, b2, b3, b4;
 
     public TriviaGUI(ArrayList<McQuestions> list1) {
@@ -106,6 +77,34 @@ public class TriviaGUI {
 	});
 	qload();
 	frame1.setVisible(false);
+    }
+
+    public class InstructionsScreen {
+
+	public JPanel getPanel() {
+	    JPanel panel = new JPanel();
+	    panel.setLayout(new BorderLayout());
+
+	    // Header of instructions screen
+	    JLabel header = new JLabel("Instructions", SwingConstants.CENTER);
+	    header.setFont(new Font("Arial", Font.BOLD, 25));
+	    panel.add(header, BorderLayout.NORTH);
+
+	    // Instructions body
+	    JTextArea instructions = new JTextArea(
+		    "1. Read each question carefully and select the correct answer out of 4.\n"
+			    + "2. If you answer correctly, then you move onto to the next prize level.\n"
+			    + "3. If you answer incorrectly, then you lose everything.\n"
+			    + "4. Use the 50/50 lifeline to remove two wrong answers only once.\n"
+			    + "5. Click \"Walk Away\" to stop and take the money earned.\n "
+			    + "6. To become the millionare, answer all 15 questions correctly.");
+
+	    instructions.setFont(new Font("Arial", Font.PLAIN, 15));
+	    instructions.setBackground(panel.getBackground());
+	    panel.add(instructions, BorderLayout.CENTER);
+
+	    return panel;
+	}
     }
 
     private void qload() {
