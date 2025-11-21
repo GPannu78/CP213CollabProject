@@ -89,6 +89,10 @@ public class TriviaGUI {
 	frame1.setVisible(true);
     }
 
+    public class GameUI {
+
+    }
+
     public class InstructionsScreen {
 
 	public JPanel getPanel() {
@@ -112,9 +116,19 @@ public class TriviaGUI {
 	    instructions.setFont(new Font("Arial", Font.PLAIN, 15));
 	    instructions.setBackground(panel.getBackground());
 	    panel.add(instructions, BorderLayout.CENTER);
+	    // Start button
+	    JButton start = new JButton("Start Game");
+	    start.setFont(new Font("Arial", Font.PLAIN, 15));
+	    panel.add(start, BorderLayout.SOUTH);
 
 	    return panel;
 	}
+    }
+
+    private void instructionsload() {
+	InstructionsScreen s = new InstructionsScreen();
+	frame1.setContentPane(s.getPanel());
+	frame1.revalidate();
     }
 
     private void qload() {
