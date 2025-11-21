@@ -37,13 +37,14 @@ public class TriviaGUI {
 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame1.setSize(350, 500);
 	frame1.setLayout(new BorderLayout());
+
 	label1 = new JLabel("", SwingConstants.CENTER);
 	label1.setFont(new Font("Arial", Font.BOLD, 15));
 	label2 = new JLabel("", SwingConstants.CENTER);
 	label2.setFont(new Font("Arial", Font.PLAIN, 15));
+
 	JPanel p1 = new JPanel(new GridLayout(2, 2));
-	frame1.add(p1, BorderLayout.CENTER);
-	frame1.add(label1, BorderLayout.NORTH);
+	JPanel p2 = new JPanel(new GridLayout(2, 2, 10, 10));
 	b1 = new JButton();
 	b2 = new JButton();
 	b3 = new JButton();
@@ -52,10 +53,6 @@ public class TriviaGUI {
 	b2.setPreferredSize(new Dimension(110, 30));
 	b3.setPreferredSize(new Dimension(110, 30));
 	b4.setPreferredSize(new Dimension(110, 30));
-	p1.add(b1);
-	p1.add(b2);
-	p1.add(b3);
-	p1.add(b4);
 	b1.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
@@ -80,6 +77,14 @@ public class TriviaGUI {
 		checka(3);
 	    }
 	});
+	frame1.add(p1, BorderLayout.NORTH);
+	frame1.add(p2, BorderLayout.CENTER);
+	frame1.add(label1, BorderLayout.NORTH);
+	p2.add(b1);
+	p2.add(b2);
+	p2.add(b3);
+	p2.add(b4);
+	frame1.add(label2, BorderLayout.SOUTH);
 	qload();
 	frame1.setVisible(true);
     }
