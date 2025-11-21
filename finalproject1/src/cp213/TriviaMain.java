@@ -116,6 +116,8 @@ public class TriviaMain {
 		new String[] { "Au", "Ag", "Go", "Gd" }, 0, "The chemical symbol for gold is Au!"));
 
 	TriviaGUI g1 = new TriviaGUI(questionlist);
+
+	g1.InstructionsScreen();
     }
 
 }

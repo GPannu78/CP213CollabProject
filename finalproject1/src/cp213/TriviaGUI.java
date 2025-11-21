@@ -34,6 +34,10 @@ public class TriviaGUI {
 
     public TriviaGUI(ArrayList<Questions> list1) {
 	this.q1 = list1;
+	InstructionsScreen();
+    }
+
+    public void GameGUI() {
 	frame1 = new JFrame("Who Want to be a Millionaire?");
 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame1.setSize(350, 500);
@@ -86,53 +90,47 @@ public class TriviaGUI {
 	p2.add(b3);
 	p2.add(b4);
 	frame1.add(label2, BorderLayout.SOUTH);
-	instructionsload();
 	qload();
 	frame1.setVisible(true);
     }
 
-    public class GameUI {
+    public void InstructionsScreen() {
 
-    }
+	frame1 = new JFrame("Instructions");
+	JPanel panel = new JPanel();
+	panel.setLayout(new BorderLayout());
 
-    public class InstructionsScreen {
+	// Header of instructions screen
+	JLabel header = new JLabel("Instructions", SwingConstants.CENTER);
+	header.setFont(new Font("Arial", Font.BOLD, 25));
+	panel.add(header, BorderLayout.NORTH);
 
-	public JPanel getPanel() {
-	    JPanel panel = new JPanel();
-	    panel.setLayout(new BorderLayout());
+	// Instructions body
+	JTextArea instructions = new JTextArea(
+		"1. Read each question carefully and select the correct answer out of 4.\n"
+			+ "2. If you answer correctly, then you move onto to the next prize level.\n"
+			+ "3. If you answer incorrectly, then you lose everything.\n"
+			+ "4. Use the 50/50 lifeline to remove two wrong answers only once.\n"
+			+ "5. Click \"Walk Away\" to stop and take the money earned.\n"
+			+ "6. To become the millionare, answer all 15 questions correctly.");
 
-	    // Header of instructions screen
-	    JLabel header = new JLabel("Instructions", SwingConstants.CENTER);
-	    header.setFont(new Font("Arial", Font.BOLD, 25));
-	    panel.add(header, BorderLayout.NORTH);
+	instructions.setFont(new Font("Arial", Font.PLAIN, 15));
+	instructions.setEditable(false);
+	instructions.setBackground(panel.getBackground());
+	instructions.setMargin(new Insets(10, 10, 10, 10));
+	panel.add(instructions, BorderLayout.CENTER);
+	// Start button
+	JButton start = new JButton("Start Game");
+	start.setFont(new Font("Arial", Font.PLAIN, 15));
+	start.addActionListener(e -> {
+	    GameGUI();
+	});
+	panel.add(start, BorderLayout.SOUTH);
 
-	    // Instructions body
-	    JTextArea instructions = new JTextArea(
-		    "1. Read each question carefully and select the correct answer out of 4.\n"
-			    + "2. If you answer correctly, then you move onto to the next prize level.\n"
-			    + "3. If you answer incorrectly, then you lose everything.\n"
-			    + "4. Use the 50/50 lifeline to remove two wrong answers only once.\n"
-			    + "5. Click \"Walk Away\" to stop and take the money earned.\n"
-			    + "6. To become the millionare, answer all 15 questions correctly.");
+	frame1.setContentPane(panel);
+	frame1.setSize(350, 500);
+	frame1.setVisible(true);
 
-	    instructions.setFont(new Font("Arial", Font.PLAIN, 15));
-	    instructions.setEditable(false);
-	    instructions.setBackground(panel.getBackground());
-	    instructions.setMargin(new Insets(10, 10, 10, 10));
-	    panel.add(instructions, BorderLayout.CENTER);
-	    // Start button
-	    JButton start = new JButton("Start Game");
-	    start.setFont(new Font("Arial", Font.PLAIN, 15));
-	    panel.add(start, BorderLayout.SOUTH);
-
-	    return panel;
-	}
-    }
-
-    private void instructionsload() {
-	InstructionsScreen s = new InstructionsScreen();
-	frame1.setContentPane(s.getPanel());
-	frame1.revalidate();
     }
 
     private void qload() {
@@ -140,9 +138,9 @@ public class TriviaGUI {
 	label1.setText(q2.getQuestion());
 	String[] options1 = q2.getOptions();
 	b1.setText(options1[0]);
-	b2.setText(options1[0]);
-	b3.setText(options1[0]);
-	b4.setText(options1[0]);
+	b2.setText(options1[1]);
+	b3.setText(options1[2]);
+	b4.setText(options1[3]);
     }
 
     private void checka(int n) {
