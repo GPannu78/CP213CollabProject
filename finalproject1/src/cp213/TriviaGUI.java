@@ -54,7 +54,7 @@ public class TriviaGUI {
 	label1.setPreferredSize(new Dimension(150, 50));
 	center.add(label1, BorderLayout.NORTH);
 
-	JPanel p2 = new JPanel(new GridLayout(2, 2, 5, 5));
+	JPanel p2 = new JPanel(new GridLayout(2, 2, 10, 10));
 	b1 = new JButton();
 	b2 = new JButton();
 	b3 = new JButton();
