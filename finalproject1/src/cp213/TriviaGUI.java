@@ -43,21 +43,41 @@ public class TriviaGUI {
 	frame1.setSize(350, 500);
 	frame1.setLayout(new BorderLayout());
 
+	JLabel title = new JLabel("Who Wants to be a Millionarie!", SwingConstants.CENTER);
+	title.setFont(new Font("Arial", Font.BOLD, 30));
+	frame1.add(title, BorderLayout.NORTH);
+
+	JPanel center = new JPanel(new BorderLayout());
+
 	label1 = new JLabel("", SwingConstants.CENTER);
 	label1.setFont(new Font("Arial", Font.BOLD, 15));
-	label2 = new JLabel("", SwingConstants.CENTER);
-	label2.setFont(new Font("Arial", Font.PLAIN, 15));
+	label1.setPreferredSize(new Dimension(380, 120));
+	center.add(label1, BorderLayout.NORTH);
 
-	JPanel p1 = new JPanel(new GridLayout(2, 2));
 	JPanel p2 = new JPanel(new GridLayout(2, 2, 10, 10));
 	b1 = new JButton();
 	b2 = new JButton();
 	b3 = new JButton();
 	b4 = new JButton();
+
 	b1.setPreferredSize(new Dimension(110, 30));
 	b2.setPreferredSize(new Dimension(110, 30));
 	b3.setPreferredSize(new Dimension(110, 30));
 	b4.setPreferredSize(new Dimension(110, 30));
+
+	p2.add(b1);
+	p2.add(b2);
+	p2.add(b3);
+	p2.add(b4);
+
+	center.add(p2, BorderLayout.CENTER);
+	frame1.add(center, BorderLayout.CENTER);
+
+	label2 = new JLabel("Score: 0", SwingConstants.CENTER);
+	label2.setFont(new Font("Arial", Font.PLAIN, 18));
+
+	frame1.add(label2, BorderLayout.SOUTH);
+
 	b1.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
@@ -82,14 +102,7 @@ public class TriviaGUI {
 		checka(3);
 	    }
 	});
-	frame1.add(p1, BorderLayout.NORTH);
-	frame1.add(p2, BorderLayout.CENTER);
-	frame1.add(label1, BorderLayout.NORTH);
-	p2.add(b1);
-	p2.add(b2);
-	p2.add(b3);
-	p2.add(b4);
-	frame1.add(label2, BorderLayout.SOUTH);
+
 	qload();
 	frame1.setVisible(true);
     }
