@@ -44,17 +44,17 @@ public class TriviaGUI {
 	frame1.setLayout(new BorderLayout());
 
 	JLabel title = new JLabel("Who Wants to be a Millionarie!", SwingConstants.CENTER);
-	title.setFont(new Font("Arial", Font.BOLD, 30));
+	title.setFont(new Font("Arial", Font.BOLD, 20));
 	frame1.add(title, BorderLayout.NORTH);
 
 	JPanel center = new JPanel(new BorderLayout());
 
 	label1 = new JLabel("", SwingConstants.CENTER);
-	label1.setFont(new Font("Arial", Font.BOLD, 15));
-	label1.setPreferredSize(new Dimension(380, 120));
+	label1.setFont(new Font("Arial", Font.BOLD, 12));
+	label1.setPreferredSize(new Dimension(150, 50));
 	center.add(label1, BorderLayout.NORTH);
 
-	JPanel p2 = new JPanel(new GridLayout(2, 2, 10, 10));
+	JPanel p2 = new JPanel(new GridLayout(2, 2, 5, 5));
 	b1 = new JButton();
 	b2 = new JButton();
 	b3 = new JButton();
