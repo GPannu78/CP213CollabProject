@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -85,8 +86,13 @@ public class TriviaGUI {
 	p2.add(b3);
 	p2.add(b4);
 	frame1.add(label2, BorderLayout.SOUTH);
+	instructionsload();
 	qload();
 	frame1.setVisible(true);
+    }
+
+    public class GameUI {
+
     }
 
     public class InstructionsScreen {
@@ -106,15 +112,27 @@ public class TriviaGUI {
 			    + "2. If you answer correctly, then you move onto to the next prize level.\n"
 			    + "3. If you answer incorrectly, then you lose everything.\n"
 			    + "4. Use the 50/50 lifeline to remove two wrong answers only once.\n"
-			    + "5. Click \"Walk Away\" to stop and take the money earned.\n "
+			    + "5. Click \"Walk Away\" to stop and take the money earned.\n"
 			    + "6. To become the millionare, answer all 15 questions correctly.");
 
 	    instructions.setFont(new Font("Arial", Font.PLAIN, 15));
+	    instructions.setEditable(false);
 	    instructions.setBackground(panel.getBackground());
+	    instructions.setMargin(new Insets(10, 10, 10, 10));
 	    panel.add(instructions, BorderLayout.CENTER);
+	    // Start button
+	    JButton start = new JButton("Start Game");
+	    start.setFont(new Font("Arial", Font.PLAIN, 15));
+	    panel.add(start, BorderLayout.SOUTH);
 
 	    return panel;
 	}
+    }
+
+    private void instructionsload() {
+	InstructionsScreen s = new InstructionsScreen();
+	frame1.setContentPane(s.getPanel());
+	frame1.revalidate();
     }
 
     private void qload() {
