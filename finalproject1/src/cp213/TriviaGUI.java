@@ -146,6 +146,38 @@ public class TriviaGUI {
 
     }
 
+    public void EndScreen() {
+
+	frame1.getContentPane().removeAll();
+	JPanel panel = new JPanel(new BorderLayout());
+	JLabel header = new JLabel("Game Over!", SwingConstants.CENTER);
+	header.setFont(new Font("Arial", Font.BOLD, 25));
+	panel.add(header, BorderLayout.CENTER);
+
+	JLabel score = new JLabel("You scored " + correct + " out of 15", SwingConstants.CENTER);
+	score.setFont(new Font("Arial", Font.PLAIN, 15));
+	panel.add(score, BorderLayout.CENTER);
+
+	JButton restart = new JButton("Play Again");
+	restart.setFont(new Font("Arial", Font.BOLD, 15));
+	restart.addActionListener(e -> {
+	    index = 0;
+	    correct = 0;
+	    InstructionsScreen();
+	});
+	panel.add(restart, BorderLayout.SOUTH);
+
+	b1.setEnabled(false);
+	b2.setEnabled(false);
+	b3.setEnabled(false);
+	b4.setEnabled(false);
+
+	frame1.setContentPane(panel);
+	frame1.revalidate();
+	frame1.repaint();
+
+    }
+
     private void qload() {
 	Questions q2 = q1.get(index);
 	label1.setText(q2.getQuestion());
@@ -166,11 +198,7 @@ public class TriviaGUI {
 	}
 	index++;
 	if (index == 15) {
-	    label1.setText("Game Over! You got " + correct + " correct out of 15");
-	    b1.setEnabled(false);
-	    b2.setEnabled(false);
-	    b3.setEnabled(false);
-	    b4.setEnabled(false);
+	    EndScreen();
 	} else {
 	    qload();
 	}
