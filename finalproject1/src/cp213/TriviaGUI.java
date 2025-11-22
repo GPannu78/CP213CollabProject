@@ -38,7 +38,7 @@ public class TriviaGUI {
     private JButton skipButton;
     private JButton walkAway;
 
-    Color backgroundColour = new Color(170, 0, 190);
+    Color backgroundColour = new Color(169, 0, 211);
     Color buttonColour = new Color(255, 195, 0);
 
     public TriviaGUI(ArrayList<Questions> list1) {
@@ -254,11 +254,12 @@ public class TriviaGUI {
 	JPanel panel = new JPanel(new BorderLayout());
 	JLabel header = new JLabel("Game Over!", SwingConstants.CENTER);
 	header.setFont(new Font("Arial", Font.BOLD, 25));
-	panel.add(header, BorderLayout.CENTER);
+	panel.add(header, BorderLayout.NORTH);
 
 	JLabel score = new JLabel("You scored " + correct + " out of 15", SwingConstants.CENTER);
 	score.setFont(new Font("Arial", Font.PLAIN, 15));
 	panel.add(score, BorderLayout.CENTER);
+	panel.setBackground(backgroundColour);
 
 	JButton restart = new JButton("Play Again");
 	restart.setFont(new Font("Arial", Font.BOLD, 15));
@@ -269,6 +270,10 @@ public class TriviaGUI {
 	    InstructionsScreen();
 	});
 	panel.add(restart, BorderLayout.SOUTH);
+	restart.setBackground(buttonColour);
+	restart.setForeground(backgroundColour);
+	header.setForeground(buttonColour);
+	score.setForeground(buttonColour);
 
 	b1.setEnabled(false);
 	b2.setEnabled(false);
