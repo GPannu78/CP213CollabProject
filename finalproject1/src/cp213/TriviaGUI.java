@@ -237,17 +237,31 @@ public class TriviaGUI {
     }
 
     private void qload() {
-	b1.setEnabled(true);
-	b2.setEnabled(true);
-	b3.setEnabled(true);
-	b4.setEnabled(true);
-	Questions q2 = q1.get(index);
-	label1.setText("<html>" + q2.getQuestion() + "</html>");
-	String[] options1 = q2.getOptions();
-	b1.setText(options1[0]);
-	b2.setText(options1[1]);
-	b3.setText(options1[2]);
-	b4.setText(options1[3]);
+
+	try {
+	    b1.setEnabled(true);
+	    b2.setEnabled(true);
+	    b3.setEnabled(true);
+	    b4.setEnabled(true);
+	    Questions q2 = q1.get(index);
+	    label1.setText("<html>" + q2.getQuestion() + "</html>");
+	    String[] options1 = q2.getOptions();
+
+	    if (options1.length == 4) {
+		b1.setText(options1[0]);
+		b2.setText(options1[1]);
+		b3.setText(options1[2]);
+		b4.setText(options1[3]);
+	    } else {
+		throw new Exception("Question does not have exactly 4 options.");
+	    }
+	} catch (IndexOutOfBoundsException e) {
+	    System.err.print("Error, Question index out of bounds." + e.getMessage());
+	    EndScreen();
+	} catch (Exception e) {
+	    System.err.print("Error with loading question." + e.getMessage());
+	    EndScreen();
+	}
     }
 
     private void checka(int n) {
