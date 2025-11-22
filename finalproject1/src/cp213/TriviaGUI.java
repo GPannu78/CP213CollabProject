@@ -37,13 +37,15 @@ public class TriviaGUI {
     private JButton ffButton;
     private JButton skipButton;
     private JButton walkAway;
+    private JLabel cash;
+    private int[] cashl = { 0, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000,
+	    1000000 };
 
     Color backgroundColour = new Color(169, 0, 211);
     Color buttonColour = new Color(255, 195, 0);
 
     public TriviaGUI(ArrayList<Questions> list1) {
 	this.q1 = list1;
-	InstructionsScreen();
     }
 
     public void GameGUI() {
@@ -112,7 +114,18 @@ public class TriviaGUI {
 	LifeLines.setBackground(backgroundColour);
 
 	center.add(p2, BorderLayout.CENTER);
-	center.add(LifeLines, BorderLayout.SOUTH);
+	JPanel bottomStack = new JPanel(new GridLayout(2, 1));
+	bottomStack.setBackground(backgroundColour);
+
+	cash = new JLabel("Prize: $0", SwingConstants.CENTER);
+	cash.setFont(new Font("Arial", Font.PLAIN, 14));
+	cash.setOpaque(true);
+	cash.setBackground(backgroundColour);
+	cash.setForeground(buttonColour);
+
+	bottomStack.add(LifeLines);
+	bottomStack.add(cash);
+	center.add(bottomStack, BorderLayout.SOUTH);
 	frame1.add(center, BorderLayout.CENTER);
 
 	label2 = new JLabel("Score: 0", SwingConstants.CENTER);
@@ -129,7 +142,6 @@ public class TriviaGUI {
 	    public void actionPerformed(ActionEvent e) {
 
 		Questions q2 = q1.get(index);
-		String[] options = q2.getOptions();
 		int corrindex = q2.getIndexAns();
 
 		int r = 0;
@@ -256,7 +268,8 @@ public class TriviaGUI {
 	header.setFont(new Font("Arial", Font.BOLD, 25));
 	panel.add(header, BorderLayout.NORTH);
 
-	JLabel score = new JLabel("You scored " + correct + " out of 15", SwingConstants.CENTER);
+	JLabel score = new JLabel("<html><div style='text-align:center;'>You scored " + correct
+		+ " out of 15<br>   Final Cash: $" + cashl[correct] + "</div></html>", SwingConstants.CENTER);
 	score.setFont(new Font("Arial", Font.PLAIN, 15));
 	panel.add(score, BorderLayout.CENTER);
 	panel.setBackground(backgroundColour);
@@ -320,6 +333,7 @@ public class TriviaGUI {
 	    if (n == q2.getIndexAns()) {
 		label2.setText("<html>" + "Correct. " + q2.getexpl() + "</html>");
 		correct++;
+		cash.setText("Prize: $" + cashl[correct]);
 	    } else {
 		label2.setText("<html>" + "Incorrect. " + q2.getexpl() + "</html>");
 	    }

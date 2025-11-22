@@ -120,6 +120,7 @@ public class TriviaMain {
 	TriviaGUI g1 = new TriviaGUI(questionlist);
 
 	g1.InstructionsScreen();
+
     }
 
 }
