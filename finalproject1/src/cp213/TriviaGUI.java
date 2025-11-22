@@ -6,6 +6,7 @@
 package cp213;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -37,6 +38,9 @@ public class TriviaGUI {
     private JButton skipButton;
     private JButton walkAway;
 
+    Color backgroundColour = new Color(170, 0, 190);
+    Color buttonColour = new Color(255, 195, 0);
+
     public TriviaGUI(ArrayList<Questions> list1) {
 	this.q1 = list1;
 	InstructionsScreen();
@@ -47,19 +51,26 @@ public class TriviaGUI {
 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame1.setSize(350, 500);
 	frame1.setLayout(new BorderLayout());
+	frame1.setBackground(backgroundColour);
 
 	JLabel title = new JLabel("Who Wants to be a Millionarie!", SwingConstants.CENTER);
 	title.setFont(new Font("Arial", Font.BOLD, 20));
 	frame1.add(title, BorderLayout.NORTH);
+	title.setOpaque(true);
+	title.setBackground(backgroundColour);
+	title.setForeground(buttonColour);
 
 	JPanel center = new JPanel(new BorderLayout());
 
 	label1 = new JLabel("", SwingConstants.CENTER);
 	label1.setFont(new Font("Arial", Font.BOLD, 12));
 	label1.setPreferredSize(new Dimension(50, 50));
+	label1.setForeground(buttonColour);
 	center.add(label1, BorderLayout.NORTH);
+	center.setBackground(backgroundColour);
 
 	JPanel p2 = new JPanel(new GridLayout(2, 2, 10, 10));
+	p2.setBackground(backgroundColour);
 	b1 = new JButton();
 	b2 = new JButton();
 	b3 = new JButton();
@@ -70,6 +81,15 @@ public class TriviaGUI {
 	b3.setPreferredSize(new Dimension(110, 30));
 	b4.setPreferredSize(new Dimension(110, 30));
 
+	b1.setBackground(buttonColour);
+	b2.setBackground(buttonColour);
+	b3.setBackground(buttonColour);
+	b4.setBackground(buttonColour);
+	b1.setForeground(backgroundColour);
+	b2.setForeground(backgroundColour);
+	b3.setForeground(backgroundColour);
+	b4.setForeground(backgroundColour);
+
 	p2.add(b1);
 	p2.add(b2);
 	p2.add(b3);
@@ -78,11 +98,18 @@ public class TriviaGUI {
 	ffButton = new JButton("50/50");
 	skipButton = new JButton("Skip");
 	walkAway = new JButton("Walk Away");
+	ffButton.setBackground(buttonColour);
+	skipButton.setBackground(buttonColour);
+	walkAway.setBackground(buttonColour);
+	ffButton.setForeground(backgroundColour);
+	skipButton.setForeground(backgroundColour);
+	walkAway.setForeground(backgroundColour);
 
 	JPanel LifeLines = new JPanel();
 	LifeLines.add(ffButton);
 	LifeLines.add(skipButton);
 	LifeLines.add(walkAway);
+	LifeLines.setBackground(backgroundColour);
 
 	center.add(p2, BorderLayout.CENTER);
 	center.add(LifeLines, BorderLayout.SOUTH);
@@ -91,6 +118,9 @@ public class TriviaGUI {
 	label2 = new JLabel("Score: 0", SwingConstants.CENTER);
 	label2.setFont(new Font("Arial", Font.PLAIN, 12));
 	label2.setPreferredSize(new Dimension(50, 50));
+	label2.setOpaque(true);
+	label2.setBackground(backgroundColour);
+	label2.setForeground(buttonColour);
 
 	frame1.add(label2, BorderLayout.SOUTH);
 
@@ -177,12 +207,13 @@ public class TriviaGUI {
     public void InstructionsScreen() {
 
 	frame1 = new JFrame("Instructions");
-	JPanel panel = new JPanel();
-	panel.setLayout(new BorderLayout());
+	JPanel panel = new JPanel(new BorderLayout());
+	panel.setBackground(backgroundColour);
 
 	// Header of instructions screen
 	JLabel header = new JLabel("Instructions", SwingConstants.CENTER);
 	header.setFont(new Font("Arial", Font.BOLD, 25));
+	header.setForeground(buttonColour);
 	panel.add(header, BorderLayout.NORTH);
 
 	// Instructions body
@@ -198,11 +229,14 @@ public class TriviaGUI {
 	instructions.setFont(new Font("Arial", Font.PLAIN, 15));
 	instructions.setEditable(false);
 	instructions.setBackground(panel.getBackground());
+	instructions.setForeground(buttonColour);
 	instructions.setMargin(new Insets(10, 10, 10, 10));
 	panel.add(instructions, BorderLayout.CENTER);
 	// Start button
 	JButton start = new JButton("Start Game");
-	start.setFont(new Font("Arial", Font.PLAIN, 15));
+	start.setBackground(buttonColour);
+	start.setForeground(backgroundColour);
+	start.setFont(new Font("Arial", Font.BOLD, 15));
 	start.addActionListener(e -> {
 	    GameGUI();
 	});
