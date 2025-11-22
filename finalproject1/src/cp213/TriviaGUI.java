@@ -13,6 +13,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -54,7 +55,7 @@ public class TriviaGUI {
 
 	label1 = new JLabel("", SwingConstants.CENTER);
 	label1.setFont(new Font("Arial", Font.BOLD, 12));
-	label1.setPreferredSize(new Dimension(150, 50));
+	label1.setPreferredSize(new Dimension(50, 50));
 	center.add(label1, BorderLayout.NORTH);
 
 	JPanel p2 = new JPanel(new GridLayout(2, 2, 10, 10));
@@ -85,7 +86,8 @@ public class TriviaGUI {
 	frame1.add(center, BorderLayout.CENTER);
 
 	label2 = new JLabel("Score: 0", SwingConstants.CENTER);
-	label2.setFont(new Font("Arial", Font.PLAIN, 18));
+	label2.setFont(new Font("Arial", Font.PLAIN, 12));
+	label2.setPreferredSize(new Dimension(50, 50));
 
 	frame1.add(label2, BorderLayout.SOUTH);
 
@@ -174,12 +176,12 @@ public class TriviaGUI {
 
 	// Instructions body
 	JTextArea instructions = new JTextArea(
-		"HOW TO PLAY:\n\n" + "1. Read each question carefully and select the correct answer out of 4.\n"
-			+ "2. If you answer correctly, then you move onto to the next prize level.\n"
-			+ "3. If you answer incorrectly, then you lose everything.\n"
-			+ "4. Use the 50/50 lifeline to remove two wrong answers only once.\n"
-			+ "5. Click \"Walk Away\" to stop and take the money earned.\n"
-			+ "6. To become the millionare, answer all 15 questions correctly.\n\n" + "LIFELINES:\n\n"
+		"HOW TO PLAY:\n\n" + "1. Read each question carefully and select the \n    correct answer out of 4.\n"
+			+ "2. If you answer correctly, then you move onto to \n    the next prize level.\n"
+			+ "3. If you answer incorrectly, then you lose \n    everything.\n"
+			+ "4. Use the 50/50 lifeline to remove two wrong \n    answers only once.\n"
+			+ "5. Click \"Walk Away\" to stop and take the money \n    earned.\n"
+			+ "6. To become the millionare, answer all 15 \n    questions correctly.\n\n" + "LIFELINES:\n\n"
 			+ "50/50 - Removes two wrong choices.\n" + "Skip - Skips the current question.\n\n");
 
 	instructions.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -216,6 +218,7 @@ public class TriviaGUI {
 	JButton restart = new JButton("Play Again");
 	restart.setFont(new Font("Arial", Font.BOLD, 15));
 	restart.addActionListener(e -> {
+	    Collections.shuffle(q1);
 	    index = 0;
 	    correct = 0;
 	    InstructionsScreen();
@@ -239,7 +242,7 @@ public class TriviaGUI {
 	b3.setEnabled(true);
 	b4.setEnabled(true);
 	Questions q2 = q1.get(index);
-	label1.setText(q2.getQuestion());
+	label1.setText("<html>" + q2.getQuestion() + "</html>");
 	String[] options1 = q2.getOptions();
 	b1.setText(options1[0]);
 	b2.setText(options1[1]);
@@ -248,22 +251,30 @@ public class TriviaGUI {
     }
 
     private void checka(int n) {
-	Questions q2 = q1.get(index);
-	if (n == q2.getIndexAns()) {
-	    label2.setText("Correct. " + q2.getexpl());
-	    correct++;
-	} else {
-	    label2.setText("Incorrect. " + q2.getexpl());
-	}
-	index++;
-	if (index >= q1.size()) {
-	    index = q1.size() - 1;
-	}
-	answered++;
-	if (answered == 15) {
+	try {
+	    Questions q2 = q1.get(index);
+	    if (n == q2.getIndexAns()) {
+		label2.setText("<html>" + "Correct. " + q2.getexpl() + "</html>");
+		correct++;
+	    } else {
+		label2.setText("<html>" + "Incorrect. " + q2.getexpl() + "</html>");
+	    }
+	    index++;
+	    if (index >= q1.size()) {
+		index = q1.size() - 1;
+	    }
+	    answered++;
+	    if (answered == 15) {
+		EndScreen();
+	    } else {
+		qload();
+	    }
+	} catch (IndexOutOfBoundsException e) {
+	    System.err.println("Error: Question index out of bounds. " + e.getMessage());
 	    EndScreen();
-	} else {
-	    qload();
+	} catch (Exception e) {
+	    System.err.println("Error checking answer: " + e.getMessage());
+	    EndScreen();
 	}
     }
 }
