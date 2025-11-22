@@ -30,9 +30,10 @@ public class TriviaGUI {
     private JFrame frame1;
     private JLabel label1, label2;
     private int correct = 0;
+    private int answered = 0;
     private JButton b1, b2, b3, b4;
-    private boolean ffUsed = false;
-    private boolean skipUsed = false;
+    private JButton ffButton;
+    private JButton skipButton;
 
     public TriviaGUI(ArrayList<Questions> list1) {
 	this.q1 = list1;
@@ -72,16 +73,64 @@ public class TriviaGUI {
 	p2.add(b3);
 	p2.add(b4);
 
-	JButton ffButton = new JButton("50/50 LifeLine");
-	JButton skipButton = new JButton("Skip Question");
+	ffButton = new JButton("50/50 LifeLine");
+	skipButton = new JButton("Skip Question");
+
+	JPanel LifeLines = new JPanel();
+	LifeLines.add(ffButton);
+	LifeLines.add(skipButton);
 
 	center.add(p2, BorderLayout.CENTER);
+	center.add(LifeLines, BorderLayout.SOUTH);
 	frame1.add(center, BorderLayout.CENTER);
 
 	label2 = new JLabel("Score: 0", SwingConstants.CENTER);
 	label2.setFont(new Font("Arial", Font.PLAIN, 18));
 
 	frame1.add(label2, BorderLayout.SOUTH);
+
+	ffButton.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+
+		Questions q2 = q1.get(index);
+		String[] options = q2.getOptions();
+		int corrindex = q2.getIndexAns();
+
+		int r = 0;
+		JButton[] buttons = { b1, b2, b3, b4 };
+
+		for (int i = 0; i < 4 && r < 2; i++) {
+		    if (i != corrindex) {
+			buttons[i].setEnabled(false);
+			r++;
+		    }
+
+		}
+		ffButton.setEnabled(false);
+	    }
+	});
+
+	skipButton.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+
+		skipButton.setEnabled(false);
+
+		index++;
+		if (index >= q1.size()) {
+		    index = q1.size() - 1;
+		}
+
+		b1.setEnabled(true);
+		b2.setEnabled(true);
+		b3.setEnabled(true);
+		b4.setEnabled(true);
+
+		qload();
+
+	    }
+	});
 
 	b1.addActionListener(new ActionListener() {
 	    @Override
@@ -185,6 +234,10 @@ public class TriviaGUI {
     }
 
     private void qload() {
+	b1.setEnabled(true);
+	b2.setEnabled(true);
+	b3.setEnabled(true);
+	b4.setEnabled(true);
 	Questions q2 = q1.get(index);
 	label1.setText(q2.getQuestion());
 	String[] options1 = q2.getOptions();
@@ -203,7 +256,11 @@ public class TriviaGUI {
 	    label2.setText("Incorrect. " + q2.getexpl());
 	}
 	index++;
-	if (index == 15) {
+	if (index >= q1.size()) {
+	    index = q1.size() - 1;
+	}
+	answered++;
+	if (answered == 15) {
 	    EndScreen();
 	} else {
 	    qload();

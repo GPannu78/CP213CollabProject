@@ -6,6 +6,7 @@
 package cp213;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -115,6 +116,7 @@ public class TriviaMain {
 	questionlist.add(new McQuestions("What is the chemical symbol for gold?",
 		new String[] { "Au", "Ag", "Go", "Gd" }, 0, "The chemical symbol for gold is Au!"));
 
+	Collections.shuffle(questionlist);
 	TriviaGUI g1 = new TriviaGUI(questionlist);
 
 	g1.InstructionsScreen();
