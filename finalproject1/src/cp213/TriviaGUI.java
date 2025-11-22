@@ -35,6 +35,7 @@ public class TriviaGUI {
     private JButton b1, b2, b3, b4;
     private JButton ffButton;
     private JButton skipButton;
+    private JButton walkAway;
 
     public TriviaGUI(ArrayList<Questions> list1) {
 	this.q1 = list1;
@@ -74,12 +75,14 @@ public class TriviaGUI {
 	p2.add(b3);
 	p2.add(b4);
 
-	ffButton = new JButton("50/50 LifeLine");
-	skipButton = new JButton("Skip Question");
+	ffButton = new JButton("50/50");
+	skipButton = new JButton("Skip");
+	walkAway = new JButton("Walk Away");
 
 	JPanel LifeLines = new JPanel();
 	LifeLines.add(ffButton);
 	LifeLines.add(skipButton);
+	LifeLines.add(walkAway);
 
 	center.add(p2, BorderLayout.CENTER);
 	center.add(LifeLines, BorderLayout.SOUTH);
@@ -132,6 +135,14 @@ public class TriviaGUI {
 		qload();
 
 	    }
+	});
+
+	walkAway.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		EndScreen();
+	    }
+
 	});
 
 	b1.addActionListener(new ActionListener() {
