@@ -103,7 +103,7 @@ public class TriviaMain {
 		"The Amazon River is the longest river aside from the Nile"));
 
 	questionlist.add(new McQuestions("How many moons does Neptune have?", new String[] { "12", "15", "14", "16" },
-		2, "Neptune has 14 known moons"));
+		3, "Neptune has 16 known moons"));
 
 	questionlist.add(new McQuestions("In which decade was the first computer mouse publicly demonstrated?",
 		new String[] { "1950s", "1960s", "1970s", "1980s" }, 1,

@@ -280,6 +280,7 @@ public class TriviaGUI {
 	    Collections.shuffle(q1);
 	    index = 0;
 	    correct = 0;
+	    answered = 0;
 	    InstructionsScreen();
 	});
 	panel.add(restart, BorderLayout.SOUTH);
