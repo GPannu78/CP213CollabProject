@@ -31,6 +31,8 @@ public class TriviaGUI {
     private JLabel label1, label2;
     private int correct = 0;
     private JButton b1, b2, b3, b4;
+    private boolean ffUsed = false;
+    private boolean skipUsed = false;
 
     public TriviaGUI(ArrayList<Questions> list1) {
 	this.q1 = list1;
@@ -69,6 +71,9 @@ public class TriviaGUI {
 	p2.add(b2);
 	p2.add(b3);
 	p2.add(b4);
+
+	JButton ffButton = new JButton("50/50 LifeLine");
+	JButton skipButton = new JButton("Skip Question");
 
 	center.add(p2, BorderLayout.CENTER);
 	frame1.add(center, BorderLayout.CENTER);
@@ -120,12 +125,13 @@ public class TriviaGUI {
 
 	// Instructions body
 	JTextArea instructions = new JTextArea(
-		"1. Read each question carefully and select the correct answer out of 4.\n"
+		"HOW TO PLAY:\n\n" + "1. Read each question carefully and select the correct answer out of 4.\n"
 			+ "2. If you answer correctly, then you move onto to the next prize level.\n"
 			+ "3. If you answer incorrectly, then you lose everything.\n"
 			+ "4. Use the 50/50 lifeline to remove two wrong answers only once.\n"
 			+ "5. Click \"Walk Away\" to stop and take the money earned.\n"
-			+ "6. To become the millionare, answer all 15 questions correctly.");
+			+ "6. To become the millionare, answer all 15 questions correctly.\n\n" + "LIFELINES:\n\n"
+			+ "50/50 - Removes two wrong choices.\n" + "Skip - Skips the current question.\n\n");
 
 	instructions.setFont(new Font("Arial", Font.PLAIN, 15));
 	instructions.setEditable(false);
