@@ -1,28 +1,27 @@
-/**
- * @author Gurnoor Pannu
- * @author Gurbeer Pannu
- * @version 2025-11-20
- */
 package cp213;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 /**
+ * TriviaMain class definition: Stores the questions, and it's options and
+ * answers.
  * 
+ * @author Gurnoor Pannu
+ * @author Gurbeer Pannu
+ * @version 2025-11-20
  */
 public class TriviaMain {
 
     /**
-     * @param args
+     * @param args array of string type
      */
     public static void main(String[] args) {
-	// TODO Auto-generated method stub
-	Scanner keyboard = new Scanner(System.in);
 
+	// Array list used to store questions, options, answers
 	ArrayList<Questions> questionlist = new ArrayList<>();
 
+	// Adding questions, options, answers to questionlist
 	questionlist.add(new McQuestions("Where is the Mariana Trench located?",
 		new String[] { "Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Arctic Ocean" }, 1,
 		"The Mariana Trench is located in the pacific Ocean."));
@@ -116,9 +115,13 @@ public class TriviaMain {
 	questionlist.add(new McQuestions("What is the chemical symbol for gold?",
 		new String[] { "Au", "Ag", "Go", "Gd" }, 0, "The chemical symbol for gold is Au!"));
 
+	// Shuffling questionslist
 	Collections.shuffle(questionlist);
+
+	// Creating TriviaGUI object and sending questionlist
 	TriviaGUI g1 = new TriviaGUI(questionlist);
 
+	// Calling instructions screen to start game
 	g1.InstructionsScreen();
 
     }
