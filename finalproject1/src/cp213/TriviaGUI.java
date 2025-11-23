@@ -1,8 +1,3 @@
-/**
- * @author Gurnoor Pannu
- * @author Gurbeer Pannu
- * @version 2025-11-20
- */
 package cp213;
 
 import java.awt.BorderLayout;
