@@ -40,7 +40,7 @@ public class TriviaGUI {
     private JButton ffButton;
     private JButton skipButton;
     private JButton walkAway;
-    private JLabel cash;
+    private JLabel cash, score;
     private int[] cashl = { 0, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000,
 	    1000000 };
 
@@ -315,8 +315,8 @@ public class TriviaGUI {
 	header.setFont(new Font("Arial", Font.BOLD, 25));
 	panel.add(header, BorderLayout.NORTH);
 
-	JLabel score = new JLabel("<html><div style='text-align:center;'>You scored " + correct
-		+ " out of 15<br>   Final Cash: $" + cashl[correct] + "</div></html>", SwingConstants.CENTER);
+	score = new JLabel("<html><div style='text-align:center;'>Cash Earned: $" + cashl[correct] + "</div></html>",
+		SwingConstants.CENTER);
 	score.setFont(new Font("Arial", Font.PLAIN, 15));
 	panel.add(score, BorderLayout.CENTER);
 	panel.setBackground(backgroundColour);
@@ -398,6 +398,8 @@ public class TriviaGUI {
 		cash.setText("Prize: $" + cashl[correct]);
 	    } else {
 		label2.setText("<html>" + "Incorrect. " + q2.getexpl() + "</html>");
+		correct = 0;
+		EndScreen();
 	    }
 	    index++;
 	    if (index >= q1.size()) {
