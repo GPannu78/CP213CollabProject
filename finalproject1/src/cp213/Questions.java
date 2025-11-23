@@ -1,7 +1,9 @@
 package cp213;
 
 /**
- * Questions class definition.
+ * Questions class definition: Stores and displays questions, allowing the user
+ * to see the current question to answer. Then, checks the answer given by the
+ * user to see if it's correct or not.
  * 
  * @author Gurnoor Pannu
  * @author Gurbeer Pannu
@@ -14,12 +16,22 @@ public class Questions {
     protected String[] options;
     protected int indexans;
 
+    /**
+     * Instantiates a Questions object.
+     *
+     * @param question current question
+     * @param options  array list of options
+     * @param indexans index of the answer
+     */
     public Questions(String question, String[] options, int indexans) {
 	this.question = question;
 	this.options = options;
 	this.indexans = indexans;
     }
 
+    /**
+     * Displays the current question
+     */
     public void displayq() {
 	System.out.println(question);
 	for (int i = 0; i < options.length; i++) {
@@ -27,6 +39,12 @@ public class Questions {
 	}
     }
 
+    /**
+     * Checks the answer given by user
+     * 
+     * @param ans answer to check
+     * @return T/F if answer is correct or not
+     */
     public boolean checkans(int ans) {
 	return indexans == ans;
     }
