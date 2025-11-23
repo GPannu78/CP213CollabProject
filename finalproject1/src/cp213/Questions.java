@@ -1,14 +1,15 @@
+package cp213;
+
 /**
+ * Questions class definition.
+ * 
  * @author Gurnoor Pannu
  * @author Gurbeer Pannu
  * @version 2025-11-20
  */
-package cp213;
-
-/**
- * 
- */
 public class Questions {
+
+    // Attributes
     protected String question;
     protected String[] options;
     protected int indexans;
@@ -30,30 +31,65 @@ public class Questions {
 	return indexans == ans;
     }
 
+    /**
+     * Gets the expl (Accessor method)
+     * 
+     * @return "N/A"
+     */
     public String getexpl() {
 	return "N/A";
     }
 
+    /**
+     * Gets the question (Accessor method)
+     * 
+     * @return question
+     */
     public String getQuestion() {
-	return this.question;
+	return question;
     }
 
+    /**
+     * Gets the options (Accessor method)
+     * 
+     * @return options
+     */
     public String[] getOptions() {
-	return this.options;
+	return options;
     }
 
+    /**
+     * Gets the Index of answer (Accessor method)
+     * 
+     * @return indexans
+     */
     public int getIndexAns() {
-	return this.indexans;
+	return indexans;
     }
 
+    /**
+     * Sets the question (Mutator method)
+     * 
+     * @param question that sets
+     */
     public void setQuestion(String question) {
 	this.question = question;
     }
 
+    /**
+     * Sets the options (Mutator method)
+     * 
+     * @param options that set
+     */
     public void setOptions(String[] options) {
 	this.options = options;
     }
 
+    /**
+     * Sets the Index of answer (Mutator method)
+     * 
+     * @param Indexans that sets
+     */
     public void setIndexAns(int indexans) {
 	this.indexans = indexans;
     }

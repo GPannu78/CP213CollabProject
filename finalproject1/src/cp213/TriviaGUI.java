@@ -128,7 +128,7 @@ public class TriviaGUI {
 	center.add(bottomStack, BorderLayout.SOUTH);
 	frame1.add(center, BorderLayout.CENTER);
 
-	label2 = new JLabel("Score: 0", SwingConstants.CENTER);
+	label2 = new JLabel("-------", SwingConstants.CENTER);
 	label2.setFont(new Font("Arial", Font.PLAIN, 12));
 	label2.setPreferredSize(new Dimension(50, 50));
 	label2.setOpaque(true);
