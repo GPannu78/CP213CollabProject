@@ -19,9 +19,17 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 /**
+ * TriviaGUI class definition: This class handles all the GUI portion of this
+ * game, it handles instructions, game and end screen along with all helper
+ * methods like qload and checka used in the GUI game for smooth user
+ * interaction
  * 
+ * @author Gurnoor Pannu
+ * @author Gurbeer Pannu
+ * @version 2025-11-23
  */
 public class TriviaGUI {
+    // Instance variables to be used in multiple methods
     private int index = 0;
     private ArrayList<Questions> q1;
     private JFrame frame1;
@@ -36,20 +44,35 @@ public class TriviaGUI {
     private int[] cashl = { 0, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000,
 	    1000000 };
 
+    // Creating variables for color for easier changes
     Color backgroundColour = new Color(169, 0, 211);
     Color buttonColour = new Color(255, 195, 0);
 
+    /**
+     * Instantiates a TriviaGUI object.
+     *
+     * @param ArrayList of Questions type
+     */
     public TriviaGUI(ArrayList<Questions> list1) {
 	this.q1 = list1;
     }
 
+    /**
+     * Creates a GameGUI (main game screen), where user plays trivia game all labels
+     * and buttons are created and set for user interaction this method also handles
+     * actionperformed for each button
+     *
+     */
     public void GameGUI() {
+	// Creating main frame
 	frame1 = new JFrame("Who Want to be a Millionaire?");
 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame1.setSize(350, 500);
 	frame1.setLayout(new BorderLayout());
 	frame1.setBackground(backgroundColour);
 
+	// Creating labels and buttons and setting their attributes
+	// Also changing colors for all attributes
 	JLabel title = new JLabel("Who Wants to be a Millionarie!", SwingConstants.CENTER);
 	title.setFont(new Font("Arial", Font.BOLD, 20));
 	frame1.add(title, BorderLayout.NORTH);
@@ -132,8 +155,14 @@ public class TriviaGUI {
 
 	frame1.add(label2, BorderLayout.SOUTH);
 
+	// Actionlistener for all buttons along with each anctionperformed method
 	ffButton.addActionListener(new ActionListener() {
 	    @Override
+	    /**
+	     * This method is used when fifty fifty button is clicked. The method sets two
+	     * of the wrong option buttons setenabled false so user cannot click the options
+	     *
+	     */
 	    public void actionPerformed(ActionEvent e) {
 
 		Questions q2 = q1.get(index);
@@ -155,6 +184,11 @@ public class TriviaGUI {
 
 	skipButton.addActionListener(new ActionListener() {
 	    @Override
+	    /**
+	     * This method is called when skip button is clicked. This method skips question
+	     * but does not increase score, cash label or index
+	     *
+	     */
 	    public void actionPerformed(ActionEvent e) {
 
 		skipButton.setEnabled(false);
@@ -176,12 +210,21 @@ public class TriviaGUI {
 
 	walkAway.addActionListener(new ActionListener() {
 	    @Override
+	    /**
+	     * This method is called when the user clicks walk away button. This methods
+	     * takes user to end screen.
+	     *
+	     */
 	    public void actionPerformed(ActionEvent e) {
 		EndScreen();
 	    }
 
 	});
 
+	/**
+	 * All buttons action listener and aciton performed. Each action performed calls
+	 * checka with the appropriate index for each button
+	 */
 	b1.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
@@ -211,8 +254,12 @@ public class TriviaGUI {
 	frame1.setVisible(true);
     }
 
+    /**
+     * Creates InstructionsScreen, this method handles all variables of the
+     * instructions screen and their appropriate attributes
+     */
     public void InstructionsScreen() {
-
+	// Main frame
 	frame1 = new JFrame("Instructions");
 	JPanel panel = new JPanel(new BorderLayout());
 	panel.setBackground(backgroundColour);
@@ -244,6 +291,7 @@ public class TriviaGUI {
 	start.setBackground(buttonColour);
 	start.setForeground(backgroundColour);
 	start.setFont(new Font("Arial", Font.BOLD, 15));
+	// Calls GameGUI screen when start button is clicked
 	start.addActionListener(e -> {
 	    GameGUI();
 	});
@@ -255,6 +303,10 @@ public class TriviaGUI {
 
     }
 
+    /**
+     * Creates EndScreen, this method handles all variables of end screen and all of
+     * their attributes
+     */
     public void EndScreen() {
 
 	frame1.getContentPane().removeAll();
@@ -271,6 +323,11 @@ public class TriviaGUI {
 
 	JButton restart = new JButton("Play Again");
 	restart.setFont(new Font("Arial", Font.BOLD, 15));
+	/**
+	 * If restart button is clicked, shuffle question list to change order of
+	 * questions and set appropriate variables to 0 for smooth user interaction when
+	 * playing game again
+	 */
 	restart.addActionListener(e -> {
 	    Collections.shuffle(q1);
 	    index = 0;
@@ -295,6 +352,10 @@ public class TriviaGUI {
 
     }
 
+    /**
+     * Helper method used only in this class, this method is used to load questions
+     * smoothly while also handling all unexpected cases
+     */
     private void qload() {
 
 	try {
@@ -323,6 +384,11 @@ public class TriviaGUI {
 	}
     }
 
+    /**
+     * Helper method used only in this class, this method is used to check answer
+     * and display the resulting outputs accordingly, this method also handles all
+     * unexpected cases
+     */
     private void checka(int n) {
 	try {
 	    Questions q2 = q1.get(index);
