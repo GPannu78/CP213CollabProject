@@ -45,7 +45,7 @@ public class TriviaGUI {
 	    1000000 };
 
     // Creating variables for color for easier changes
-    Color backgroundColour = new Color(169, 0, 211);
+    Color backgroundColour = new Color(0, 60, 120);
     Color buttonColour = new Color(255, 195, 0);
 
     /**
